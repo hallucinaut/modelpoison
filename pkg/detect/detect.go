@@ -303,7 +303,7 @@ func GenerateReport(result *DetectionResult) string {
 	report += "=== Model Poisoning Detection Report ===\n\n"
 	report += "Total Samples: " + string(rune(result.SampleCount+48)) + "\n"
 	report += "Poisoned Samples: " + string(rune(result.PoisonedCount+48)) + "\n"
-	report += "Risk Score: " + string(rune(int(result.RiskScore*100)+48)) + "%\n"
+	report += "Risk Score: " + fmt.Sprintf("%.0f%%", result.RiskScore*100) + "%\n"
 	report += "Method: " + result.Method + "\n\n"
 
 	if len(result.Samples) > 0 {
@@ -313,7 +313,7 @@ func GenerateReport(result *DetectionResult) string {
 				report += fmt.Sprintf("[%c] %s\n", i+49, sample.Type)
 				report += "    ID: " + sample.ID + "\n"
 				report += "    Type: " + string(sample.Type) + "\n"
-				report += "    Score: " + string(rune(int(sample.Score*100)+48)) + "%\n"
+				report += "    Score: " + fmt.Sprintf("%.0f%%", sample.Score*100) + "%\n"
 				report += "    Description: " + sample.Description + "\n"
 				report += "    Evidence: " + sample.Evidence + "\n\n"
 			}
