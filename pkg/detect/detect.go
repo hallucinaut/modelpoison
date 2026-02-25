@@ -2,6 +2,7 @@
 package detect
 
 import (
+	"fmt"
 	"math"
 )
 
@@ -309,7 +310,7 @@ func GenerateReport(result *DetectionResult) string {
 		report += "Detected Poisoned Samples:\n"
 		for i, sample := range result.Samples {
 			if sample.IsPoisoned {
-				report += "[" + string(rune(i+49)) + "] " + sample.Type + "\n"
+				report += fmt.Sprintf("[%c] %s\n", i+49, sample.Type)
 				report += "    ID: " + sample.ID + "\n"
 				report += "    Type: " + string(sample.Type) + "\n"
 				report += "    Score: " + string(rune(int(sample.Score*100)+48)) + "%\n"

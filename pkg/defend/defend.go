@@ -2,8 +2,17 @@
 package defend
 
 import (
+	"fmt"
 	"math"
 )
+
+// Sample represents a training sample.
+type Sample struct {
+	ID       string
+	Features []float64
+	Label    int
+	Metadata map[string]interface{}
+}
 
 // DefenseStrategy represents a defense strategy.
 type DefenseStrategy struct {
@@ -275,15 +284,15 @@ func CalculateDefenseScore(results []*DefenseResult) float64 {
 }
 
 // GenerateReport generates defense report.
-func GenerateReport(result *DefenseResult) string {
+func GenerateDefenseReport(result *DefenseResult) string {
 	var report string
 
 	report += "=== Model Poisoning Defense Report ===\n\n"
 	report += "Success: " + boolToString(result.Success) + "\n"
 	report += "Strategy Used: " + result.StrategyUsed + "\n"
-	report += "Improvement: " + string(rune(int(result.Improvement*100)+48)) + "%\n"
-	report += "Risk Reduction: " + string(rune(int(result.RiskReduction*100)+48)) + "%\n"
-	report += "Cost: " + string(rune(int(result.Cost*100)+48)) + "%\n"
+	report += "Improvement: " + fmt.Sprintf("%.0f%%", result.Improvement*100) + "\n"
+	report += "Risk Reduction: " + fmt.Sprintf("%.0f%%", result.RiskReduction*100) + "\n"
+	report += "Cost: " + fmt.Sprintf("%.0f%%", result.Cost*100) + "\n"
 
 	return report
 }

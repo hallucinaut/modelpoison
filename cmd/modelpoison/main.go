@@ -62,7 +62,7 @@ Commands:
 Examples:
   modelpoison detect training_data.csv
   modelpoison defend training_data.csv
-`, "modelpoison")
+`)
 }
 
 func detectPoisoning(dataset string) {
@@ -80,7 +80,7 @@ func detectPoisoning(dataset string) {
 	fmt.Println()
 
 	// Example detection
-	detector := detect.NewDetector()
+	_ = detect.NewDetector()
 	result := &detect.DetectionResult{
 		SampleCount:  1000,
 		PoisonedCount: 15,
